@@ -1,4 +1,10 @@
-coffee <- read.csv("../data/coffee.csv")
-fit <- lm(time_sec ~ level, data = coffee)
-with(coffee, scatter.smooth(x = level, y = time_sec))
-abline(fit, lty = 2, col = "blue")
+library(ggplot2)
+
+coffee <- read.csv("../data/coffee_new.csv")
+p <- ggplot(
+  coffee,
+  aes(x = level, y = time_sec)
+) + geom_point(aes(shape = warnings, col = who)) +
+  geom_smooth() + theme_bw()
+
+print(p)
